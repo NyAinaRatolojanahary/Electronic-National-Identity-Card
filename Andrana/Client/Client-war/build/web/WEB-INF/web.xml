@@ -16,6 +16,14 @@
         <servlet-name>AddCin</servlet-name>
         <servlet-class>Servlet.AddCin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Transfert</servlet-name>
+        <servlet-class>Servlet.Transfert</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjoutCoursDevise</servlet-name>
+        <servlet-class>Servlet.AjoutCoursDevise</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Accueil</servlet-name>
         <url-pattern>/Accueil</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>AddCin</servlet-name>
         <url-pattern>/AddCin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Transfert</servlet-name>
+        <url-pattern>/Transfert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutCoursDevise</servlet-name>
+        <url-pattern>/AjoutCoursDevise</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

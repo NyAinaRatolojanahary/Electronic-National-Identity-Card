@@ -75,6 +75,20 @@ create table health_action_history(
     foreign key (idhealth_action) references health_action(id)
 );
 
+create table devise(
+    id serial primary key,
+    nomdevise varchar(10)
+);
+
+create table cours_devise(
+    id serial primary key,
+    iddevise int,
+    somme double precision,
+    datedevise date,
+    tauxVente double precision,
+    foreign key (iddevise) references devise(id)
+);
+
 -- mysql
 
 create database bank;
@@ -94,23 +108,41 @@ create table bank(
     idcommune_location varchar(15)
 );
 
-create table bank_count(
+create or replace table bank_count(
     id varchar(15) primary key,
     idcount_type varchar(15),
     cin varchar(15),
     idbank varchar(15),
+    iddevise int,
     foreign key (idcount_type) references count_type(id),
     foreign key (idbank) references bank(id)
 );
 
+create table bank_action_type(
+    id serial primary key,
+    nomAction varchar(15)
+);
+
+
+-- create table bank_count_history(
+--     id varchar(15) primary key,
+--     history_status int,
+--     idbank_count varchar(15),
+--     amount double precision,
+--     history_date timestamp,
+--     note varchar(255),
+--     foreign key (idbank_count) references bank_count(id)
+-- );
+
 create table bank_count_history(
-    id varchar(15) primary key,
-    history_status int,
-    idbank_count varchar(15),
-    amount double precision,
-    history_date timestamp,
-    note varchar(255),
-    foreign key (idbank_count) references bank_count(id)
+    id serial primary key,
+    idbank_action_type int,
+    iddevise int,
+    somme double precision,
+    dateAction date,
+    idsender varchar(15),
+    idrecipient varchar(15),
+    foreign key (idbank_action_type) references bank_action_type(id)
 );
 
 -- SqlServer

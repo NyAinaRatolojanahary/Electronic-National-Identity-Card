@@ -180,6 +180,14 @@ CREATE OR REPLACE FUNCTION getseqprv()
 $$ LANGUAGE plpgsql;
 
 
+insert into devise(id,nomdevise) values (default,'MGA');
+insert into devise(id,nomdevise) values (default,'EUR');
+insert into devise(id,nomdevise) values (default,'USD');
+
+insert into cours_devise(id,iddevise,somme,datedevise) values (default,1,1,'2022-01-01');
+insert into cours_devise(id,iddevise,somme,datedevise) values (default,2,4810,'2022-01-01');
+insert into cours_devise(id,iddevise,somme,datedevise) values (default,3,4400,'2022-01-01');
+
 -- mysql
 
 insert into count_type values('Ct1','Compte Etudiant');
@@ -206,12 +214,33 @@ insert into bank_count values('Bc8','Ct3','Cin8','Bk4');
 insert into bank_count values('Bc9','Ct4','Cin9','Bk1');
 insert into bank_count values('Bc10','Ct1','Cin10','Bk2');
 
+insert into bank_action_type (id,nomAction) values(default,'Transfert');
+insert into bank_action_type (id,nomAction) values(default,'Depot');
+insert into bank_action_type (id,nomAction) values(default,'Retrait');
+insert into bank_action_type (id,nomAction) values(default,'Recu');
 
-insert into bank_count_history(id,history_status,idbank_count,amount,history_date,note) values('',,'','','',''); 
+
+
+create table bank_count_history(
+    id serial primary key,
+    idbank_action_type int,
+    iddevise int,
+    somme double precision,
+    dateAction date,
+    idsender varchar(15),
+    idrecipient varchar(15),
+    foreign key (idbank_action_type) references bank_action_type(id)
+);
+
+insert into bank_count_history(id,idbank_action_type,iddevise,somme,dateAction,idsender,idrecipient) values(default,2,1,1000000,'2022-01-10','Cin1','Cin1'); 
+insert into bank_count_history(id,idbank_action_type,iddevise,somme,dateAction,idsender,idrecipient) values(default,2,1,500000,'2022-01-10','Cin2','Cin2'); 
+insert into bank_count_history(id,idbank_action_type,iddevise,somme,dateAction,idsender,idrecipient) values(default,2,1,90000,'2022-01-10','Cin1','Cin1'); 
+insert into bank_count_history(id,idbank_action_type,iddevise,somme,dateAction,idsender,idrecipient) values(default,2,1,0,'2022-01-10','Cin2','Cin2'); 
+
 
 
 -- SqlServer
-
+insert into bank_count_history(id,idbank_action_type,iddevise,somme,dateAction,idsender,idrecipient) values(default,2,1,1000000,'2022-01-10','Cin1','Cin1');3
 insert into landed_status(id,landed_status) values('Lst1','Titre');
 insert into landed_status(id,landed_status) values('Lst2','Borne');
 insert into landed_status(id,landed_status) values('Lst3','Cadastrer');
