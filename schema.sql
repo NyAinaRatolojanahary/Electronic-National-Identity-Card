@@ -108,7 +108,7 @@ create table bank(
     idcommune_location varchar(15)
 );
 
-create or replace table bank_count(
+create table bank_count(
     id varchar(15) primary key,
     idcount_type varchar(15),
     cin varchar(15),
@@ -153,22 +153,29 @@ create table landed_status(
 );
 
 create table property(
-    id varchar(15) primary key,
+    id int identity(1,1) primary key,
     property_name varchar(20),
     property_size double precision,
     sector varchar(30),
     district varchar(30),
-    idlanded_status varchar(10),
+    idlanded_status varchar(15),
     idowner varchar(10)
 );
 
+create table property_landmark(
+    id int identity(1,1) primary key,
+    idproperty int,
+    landmark Geometry,
+    foreign key (idproperty) references property(id)
+);
+
 create table property_history_type(
-    id varchar(15) primary key,
+    id int identity(1,1)  primary key,
     property_history_type varchar(20)
 );
 
 create table property_history(
-    id varchar(15) primary key,
+    id int identity(1,1) primary key,
     idproperty varchar(15),
     idproperty_history_type varchar(15),
     idold_owner varchar(15),

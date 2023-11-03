@@ -17,7 +17,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <title>JSP Page</title>
+        <title>Detail Personne</title>
     </head>
     <body>
         <div class="container text-center">
@@ -92,7 +92,7 @@
                     <tr>
                         <th>Numero Tany</th>
                         <th>Nom Tany</th>
-                        <th>Superficie</th>
+                        <!--<th>Superficie</th>-->
                         <th>Secteur</th>
                         <th>District</th>
                         <th>Status</th>
@@ -115,8 +115,8 @@
                     %>
                     <tr>
                             <td><%= id %></td>
-                            <td><%= nomTany%></td> 
-                            <td><%= superficie%> m²</td> 
+                            <td><a href="CarteTany.jsp?id=<%= id %>"><%= nomTany%></a></td> 
+                            <!--<td><%= superficie%> m²</td>--> 
                             <td><%= secteur%></td> 
                             <td><%= district%></td> 
                             <td><%= status%></td>
@@ -127,6 +127,8 @@
                 </tbody>
                 </table>
             </div>  
+                    <button class="btn btn-primary" value="Ajouter Tany par coordonee"><a href="AjoutTanyParCoordonnee.jsp?idcin=<% out.print(m.getCn().getId());%>" style="text-decoration: none;color: white">Ajouter Tany par coordonee</a></button>
+                    <button class="btn btn-primary" value="Ajouter Tany par tracage"><a href="AjoutTanyParCarte.jsp?idcin=<% out.print(m.getCn().getId());%>" style="text-decoration: none;color: white">Ajouter Tany par tracage</a></button>
         </div>
         <a href="index.html">Home</a>
     </body>

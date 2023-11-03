@@ -24,6 +24,18 @@
         <servlet-name>AjoutCoursDevise</servlet-name>
         <servlet-class>Servlet.AjoutCoursDevise</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BorneTanyById</servlet-name>
+        <servlet-class>Servlet.BorneTanyById</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjoutTanyParCoordonnee</servlet-name>
+        <servlet-class>Servlet.AjoutTanyParCoordonnee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjoutTanyParCarte</servlet-name>
+        <servlet-class>Servlet.AjoutTanyParCarte</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Accueil</servlet-name>
         <url-pattern>/Accueil</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>AjoutCoursDevise</servlet-name>
         <url-pattern>/AjoutCoursDevise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorneTanyById</servlet-name>
+        <url-pattern>/BorneTanyById</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutTanyParCoordonnee</servlet-name>
+        <url-pattern>/AjoutTanyParCoordonnee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutTanyParCarte</servlet-name>
+        <url-pattern>/AjoutTanyParCarte</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

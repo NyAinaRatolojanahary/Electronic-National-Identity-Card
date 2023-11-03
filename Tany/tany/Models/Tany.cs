@@ -44,6 +44,11 @@ namespace tany.Models
 
         }
 
+        public Tany(String nom,String tompony){
+            this.NomTany = nom;
+            this.tompony = tompony;
+        }
+
         public Tany(String id,String nom,double size,String secteur,String district,String status,String tompony){
             this.id = id;
             this.NomTany = nom;
@@ -117,6 +122,71 @@ namespace tany.Models
 
         return TanyLists;
     }
+
+    public Tany TanyFarany(String cin)
+    {
+        List<Tany> TanyLists = new List<Tany>();
+
+        using (SqlConnection connection = new SqlConnection("Data Source=ETU2058-NYAINA\\SQLEXPRESS;Initial Catalog=land;Integrated Security=True"))
+        {
+            connection.Open();
+            string query = "SELECT * FROM property WHERE property.idowner=@cin and id NOT IN( select id from property_landmark) order by id desc limit 1";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@cin", cin);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Tany t = new Tany();
+                            t.id = Convert.ToString(reader["id"]);
+                            t.NomTany = Convert.ToString(reader["property_name"]);
+                            t.superficie = Convert.ToDouble(reader["property_size"]);
+                            t.secteur = Convert.ToString(reader["sector"]);
+                            t.district = Convert.ToString(reader["district"]);
+                            t.statusTany = Convert.ToString(reader["idlanded_status"]);
+                            t.tompony = Convert.ToString(reader["idowner"]);
+                        TanyLists.Add(t);
+                    }
+                }
+            }
+        }
+
+        return TanyLists;
+    }
+
+
+    public void AddTany(string nom, string proprietaire){
+    try
+    {
+        Console.WriteLine("Tafiditra11");
+
+        string connectionString = "Data Source=ETU2058-NYAINA\\SQLEXPRESS;Initial Catalog=land;Integrated Security=True";
+        Console.WriteLine("Tafiditra22");
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+        Console.WriteLine("Tafiditra");
+            string query = "INSERT INTO property (property_name, idowner) VALUES (@nom, @proprietaire)";
+        Console.WriteLine("Query ok");
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@nom", nom);
+                command.Parameters.AddWithValue("@proprietaire", proprietaire);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        // Gérer les exceptions ici
+        Console.WriteLine("Erreur lors de l'ajout dans la base de données : " + ex.Message);
+    }
+}
+
 
         // public static void Main(string[] args)
         // {

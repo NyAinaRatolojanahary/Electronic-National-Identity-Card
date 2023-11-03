@@ -239,8 +239,8 @@ insert into bank_count_history(id,idbank_action_type,iddevise,somme,dateAction,i
 
 
 
+
 -- SqlServer
-insert into bank_count_history(id,idbank_action_type,iddevise,somme,dateAction,idsender,idrecipient) values(default,2,1,1000000,'2022-01-10','Cin1','Cin1');3
 insert into landed_status(id,landed_status) values('Lst1','Titre');
 insert into landed_status(id,landed_status) values('Lst2','Borne');
 insert into landed_status(id,landed_status) values('Lst3','Cadastrer');
@@ -248,18 +248,31 @@ insert into landed_status(id,landed_status) values('Lst4','Vendue Acte de vente'
 insert into landed_status(id,landed_status) values('Lst5','Neutre');
 
 
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr1','Mahatazana',540.89,'Com1','Dis1','Lst1','Cin1');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr2','Amoronkady',400,'Com1','Dis1','Lst2','Cin2');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr3','Mahavokatra',1000,'Com2','Dis2','Lst3','Cin3');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr4','Mahamanina',450.60,'Com3','Dis3','Lst4','Cin4');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr5','Tanana',800,'Com4','Dis4','Lst1','Cin5');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr6','Mahafinaritra',250,'Com5','Dis5','Lst2','Cin6');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr7','Mahasoa',440,'Com6','Dis6','Lst3','Cin7');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr8','Mahafaly',2000,'Com7','Dis7','Lst4','Cin8');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr9','Mahagaga',1300,'Com8','Dis8','Lst1','Cin9');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr10','Tany soa',2500,'Com9','Dis9','Lst2','Cin10');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr11','Ambato',500,'Com10','Dis10','Lst3','Cin1');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr12','Ankazo',600,'Com1','Dis1','Lst4','Cin2');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr13','Amorondrano',750,'Com2','Dis2','Lst1','Cin3');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr14','Mahamamo',480,'Com3','Dis3','Lst2','Cin4');
-insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('Pr15','Mahanoana',920,'Com4','Dis4','Lst3','Cin5');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('1','Mahatazana',540.89,'Com1','Dis1','Lst1','Cin1');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('2','Amoronkady',400,'Com1','Dis1','Lst2','Cin2');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('3','Mahavokatra',1000,'Com2','Dis2','Lst3','Cin3');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('4','Mahamanina',450.60,'Com3','Dis3','Lst4','Cin4');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('5','Tanana',800,'Com4','Dis4','Lst1','Cin5');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('6','Mahafinaritra',250,'Com5','Dis5','Lst2','Cin6');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('7','Mahasoa',440,'Com6','Dis6','Lst3','Cin7');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('8','Mahafaly',2000,'Com7','Dis7','Lst4','Cin8');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('9','Mahagaga',1300,'Com8','Dis8','Lst1','Cin9');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('10','Tany soa',2500,'Com9','Dis9','Lst2','Cin10');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('11','Ambato',500,'Com10','Dis10','Lst3','Cin1');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('12','Ankazo',600,'Com1','Dis1','Lst4','Cin2');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('13','Amorondrano',750,'Com2','Dis2','Lst1','Cin3');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('14','Mahamamo',480,'Com3','Dis3','Lst2','Cin4');
+insert into property(id,property_name,property_size,sector,district,idlanded_status,idowner) values('15','Mahanoana',920,'Com4','Dis4','Lst3','Cin5');
+
+
+-- Insert some data
+INSERT INTO PointsOfInterest (ID, Name, Location)
+VALUES 
+    (1, 'Park', Geometry::Point(47.6204, -122.3491, 4326)), -- Seattle coordinates
+    (2, 'Museum', Geometry::Point(40.7128, -74.0060, 4326)); -- New York coordinates
+
+
+insert into property_landmark(id,idproperty,landmark) values (1,1, Geometry::Point( 47.54287445952857,-18.96253786774891, 4326));
+insert into property_landmark(id,idproperty,landmark) values (2,1, Geometry::Point( 47.5429884534117,-18.96249981801162, 4326));
+insert into property_landmark(id,idproperty,landmark) values (3,1, Geometry::Point( 47.54299381782973,-18.96281182560112, 4326));
+insert into property_landmark(id,idproperty,landmark) values (4,1, Geometry::Point( 47.543076966309194,-18.9627407995345, 4326));

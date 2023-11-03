@@ -97,7 +97,7 @@ public class PersonByCIN extends HttpServlet {
             String num = request.getParameter("cin");
             
                 // Assuming your .NET web service URL is accessible at http://example.com/TanyWs/listsTanyCin/{cin}
-            String apiUrl = "http://localhost:5102/api/TanyWs/listsTanyCin/" + num;
+            String apiUrl = "http://localhost:5102/api/listsTanyCin?cin=" + num;
 
             URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

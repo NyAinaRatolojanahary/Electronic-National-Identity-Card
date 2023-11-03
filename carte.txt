@@ -1,0 +1,95 @@
+<%-- 
+    Document   : CarteTany
+    Created on : 22 oct. 2023, 17:27:30
+    Author     : ASUS
+--%>
+
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.net.HttpURLConnection"%>
+<%@page import="java.net.URL"%>
+<%@page import="org.json.JSONArray"%>
+<%@page import="org.json.JSONObject"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% int id = Integer.parseInt(request.getParameter("id"));%>
+<%
+
+    // Assuming your .NET web service URL is accessible at http://example.com/TanyWs/listsTanyCin/{cin}
+            String apiUrl = "http://localhost:5102/api/TanyWs/BornesTanyById/" + id;
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            // Read the response from the web service
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+
+            // Process the response (assuming it's JSON, you might need a JSON library)
+            JSONArray jsonArray = new JSONArray(content.toString());
+            
+//            for(int i=0; i< jsonArray.length();i++){
+//                JSONObject property = jsonArray.getJSONObject(3);
+//                int idBorne = property.getInt("id");
+//                int idtany = property.getInt("idproperty");
+//                double lngr = property.getDouble("Longitude");
+//                double lat = property.getDouble("Latitude");
+//                out.println(lngr);
+//            }
+%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/leaflet/leaflet.css">
+        <script src="assets/leaflet/leaflet.js"></script>
+        <title>Maps</title>
+        <style>
+           #map{height: 380px;} 
+        </style>
+    </head>
+    <body>
+        <div class="container text-center">
+            <div class="modal-header" style='margin-bottom: 30px'>
+                <h5 class="modal-title">Carte Tany <% out.print(id);%></h5>
+            </div>
+            <div id="map"></div>
+            <script>
+                var map = L.map('map').setView([-18.962604592639682 ,47.54297696660276], 20);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Add a marker
+                L.marker([-18.96253786774891,47.54287445952857]).addTo(map)
+                    .bindPopup('<% out.print(id);%>').openPopup();
+            
+                var coord = [];
+            
+                <%for(int i=0; i< jsonArray.length();i++){%>
+                    
+                    coord.push([jsonArray.getJSONObject(i).getDouble("latitude"), jsonArray.getJSONObject(i).getDouble("longitude")]);
+                    
+//                var polygon = L.polygon([
+//                    [-18.96253786774891, 47.54287445952857],
+//                    [-18.96249981801162,47.5429884534117],
+//                    [-18.9627407995345,47.543076966309194],
+//                    [-18.96281182560112,47.54299381782973]
+//                ]).addTo(map);
+                
+                
+                    
+                <%}%>
+                var polygon = L.polygon(coord).addTo(map);
+            </script>
+        </div>
+    </body>
+</html>
